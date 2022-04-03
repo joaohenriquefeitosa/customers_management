@@ -19,8 +19,45 @@ class PermissionsTableSeeder extends Seeder
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $maganerOperational = Role::create(['name' => 'maganer_operational']);
+        $operational = Role::create(['name' => 'operational']);
 
-        $managerAdmin = Role::create(['name' => 'manager_admin']);
+        $admin = Role::create(['name' => 'admin']);
+
+        // Groups
+        Permission::create(['name' => 'create group']);
+        Permission::create(['name' => 'delete group']);
+        Permission::create(['name' => 'update group']);
+        Permission::create(['name' => 'view group']);
+
+        $operational->givePermissionTo([
+            'view group'
+        ]);
+
+        $admin->givePermissionTo([
+            'create group',
+            'update group',
+            'delete group',
+            'view group'
+        ]);
+
+        // Clients
+        Permission::create(['name' => 'create client']);
+        Permission::create(['name' => 'delete client']);
+        Permission::create(['name' => 'update client']);
+        Permission::create(['name' => 'view client']);
+
+        $operational->givePermissionTo([
+            'create client',
+            'update client',
+            'delete client',
+            'view client'
+        ]);
+
+        $admin->givePermissionTo([
+            'create client',
+            'update client',
+            'delete client',
+            'view client'
+        ]);
     }
 }
