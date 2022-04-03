@@ -4,11 +4,11 @@ services:
     system_cm:
         container_name: system_cm
         build:
-            context: ./vendor/laravel/sail/runtimes/8.0
+            context: ./vendor/laravel/sail/runtimes/8.1
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.0/app
+        image: sail-8.1/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -31,7 +31,6 @@ services:
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         volumes:
-            # - ./docker/mysql/mysql-data:/var/lib/mysql
             - 'sailmysql:/var/lib/mysql'
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
