@@ -8,6 +8,16 @@ O projeto possui dois tipos de gerentes:
 
 OBS: os dados de acesso dos dois perfis de usuários se encontram no seeder UsersTableSeeder;
 
+## Sobre o projeto
+
+Pacotes utilizados:
+
+* Laravel Sail (que já vem por padrão no Laravel, facilita o uso do docker);
+* Laravel Passport (para autenticação via api);
+* Ramsey UUID (para uso de UUID4 na primary key das Models);
+* Spatie Permissions (para filtrar as permissões dos tipos de Gerente);
+* ElegantWeb Sanitizer (para filtragem do formato de CNPJ, e outros possíveis dados que venham a ser incorporados no futuro);
+
 
 ## Sobre o ambiente
 
