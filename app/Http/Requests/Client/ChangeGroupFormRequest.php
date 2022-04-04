@@ -3,19 +3,9 @@
 namespace App\Http\Requests\Client;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Elegant\Sanitizer\Laravel\SanitizesInput;
 
-class StoreFormRequest extends FormRequest
+class ChangeGroupFormRequest extends FormRequest
 {
-    use SanitizesInput;
-
-    public function filters()
-    {
-        return [
-            'client_document' => 'digit'
-        ];
-    }
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -34,9 +24,7 @@ class StoreFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'client_name' => ['required', 'unique:groups,group_name', 'min:2', 'max:255'],
-            'client_document' => ['required'],
-            'foundation_date' => ['required'],
+            'client_id' => ['nullable', 'exists:clients,id'],
             'group_id' => ['nullable', 'exists:groups,id'],
         ];
     }

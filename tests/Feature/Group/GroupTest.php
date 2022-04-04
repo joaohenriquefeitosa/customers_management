@@ -67,10 +67,6 @@ class GroupTest extends TestCase
             'group_name' => Str::random(7),
         ];
 
-        // Loga com usuário 1
-        $user = User::where('email', 'admin@manager.com')->first();
-        $token = $user->createToken('LaravelAuthApp')->accessToken;
-
         $response = $this->json('PUT', route('group.update', $group->id), $data, ['Accept' => 'application/json', 'Authorization' => 'Bearer ' . $this->token])->assertStatus(200);
     }
 
@@ -81,9 +77,6 @@ class GroupTest extends TestCase
         ];
         $group = Group::create($data);
 
-        $user = User::where('email', 'admin@manager.com')->first();
-        $token = $user->createToken('LaravelAuthApp')->accessToken;
-
-        $response = $this->json('delete', route('group.destroy', $group->id), [], ['Accept' => 'application/json', 'Authorization' => 'Bearer ' . $this->token])->assertStatus(200);
+        $response = $this->json('DELETE', route('group.destroy', $group->id), [], ['Accept' => 'application/json', 'Authorization' => 'Bearer ' . $this->token])->assertStatus(200);
     }
 }

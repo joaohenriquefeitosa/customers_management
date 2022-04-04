@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->uuid('id')->primary();
             $table->string('client_name');
             $table->string('client_document')->nullable();
-            $table->string('foundation_date')->nullable();
+            $table->date('foundation_date')->nullable();
 
             $table->uuid('group_id')->nullable();
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
