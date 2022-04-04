@@ -14,11 +14,11 @@ class LoginTest extends TestCase
      */
     public function testLoginWithSuccess()
     {
-        $user = [
+        $data = [
             'email' => 'operacional@manager.com',
             'password' => 'manager123'
         ];
 
-        $this->json('POST', route('login'), $user, ['Accept' => 'application/json'])->assertStatus(200);
+        $this->json('POST', route('login'), $data, ['Accept' => 'application/json'])->assertStatus(200);
     }
 }

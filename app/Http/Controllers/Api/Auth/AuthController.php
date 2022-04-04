@@ -18,26 +18,24 @@ class AuthController extends Controller
     {
         try {
             $data = (object)$request->validated();
-
+            
             $user = User::where('email', $data->email)->first();
-
+            
             // E-mail not found.
             if (!$user) {
                 return response()->json(['status' => false, 'message' => 'User not found!'], Response::HTTP_NOT_FOUND);
             }
-
+            
             // Check given password
             if (!Auth::attempt(['email' => $data->email, 'password' => $data->password])) {
                 return response()->json(['status' => false, 'message' => 'Unauthorised'], Response::HTTP_UNAUTHORIZED);
             }
-
+            
             // Return the token
             $token = auth()->user()->createToken(Str::random(6))->accessToken;
             return response()->json($token);
-
-            return response()->json(status: Response::HTTP_UNAUTHORIZED);
         } catch (Throwable $th) {
-            throw $th;
+            return response()->json(status: Response::HTTP_UNAUTHORIZED);
         }
     }
 }

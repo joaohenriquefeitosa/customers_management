@@ -24,7 +24,7 @@ class PermissionsTableSeeder extends Seeder
         $admin = Role::create(['name' => 'admin']);
 
         // Groups
-        Permission::create(['name' => 'create group']);
+        Permission::create(['name' => 'store group']);
         Permission::create(['name' => 'delete group']);
         Permission::create(['name' => 'update group']);
         Permission::create(['name' => 'view group']);
@@ -34,27 +34,27 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         $admin->givePermissionTo([
-            'create group',
+            'store group',
             'update group',
             'delete group',
             'view group'
         ]);
 
         // Clients
-        Permission::create(['name' => 'create client']);
+        Permission::create(['name' => 'store client']);
         Permission::create(['name' => 'delete client']);
         Permission::create(['name' => 'update client']);
         Permission::create(['name' => 'view client']);
 
         $operational->givePermissionTo([
-            'create client',
+            'store client',
             'update client',
             'delete client',
             'view client'
         ]);
 
         $admin->givePermissionTo([
-            'create client',
+            'store client',
             'update client',
             'delete client',
             'view client'
